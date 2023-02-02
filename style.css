@@ -12,6 +12,12 @@
     background-image: url("basketballCourt.png");
     background-size: cover;
     background-position: center;
+
+    /* This part creates the grid */
+    display: grid;
+    grid-template-columns: repeat(40,1fr);
+    grid-template-rows: repeat(20, 1fr);
+
 }
 
 body{

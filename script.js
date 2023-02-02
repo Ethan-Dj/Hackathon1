@@ -1,9 +1,12 @@
 function createBasketBallDivs () {
     let basketballDiv = document.getElementById("basketballCourt")
+
     for (let i=0; i < 220; i++){
+
         let createdDiv = document.createElement("div")
         createdDiv.id = `${i}`
         createdDiv.style.border = "solid 0.25px green"
+
 
 
         createdDiv.addEventListener("mousedown",mouseDown)
@@ -12,9 +15,11 @@ function createBasketBallDivs () {
         document.addEventListener("keyup",keyUp)
         createdDiv.addEventListener("mouseover",locations)
 
+
         basketballDiv.appendChild(createdDiv)
     }
 }
+
 
 let isMouseDown = false;
 let iskeyPressed = false;
@@ -55,7 +60,6 @@ function locations(evt){
     evt.preventDefault()
     currentLocation = evt.srcElement.attributes.id.nodeValue
 }
-
 
 
 
