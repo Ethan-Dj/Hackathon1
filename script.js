@@ -17,6 +17,8 @@ function createBasketBallDivs () {
         createdDiv.style.border = "solid 0.25px green"
         
         //creates event listener
+        createdDiv.addEventListener("mousedown",mouseDown)
+        createdDiv.addEventListener("mouseup",mouseUp)
         document.addEventListener("keydown",keyDown)
         document.addEventListener("keyup",keyUp)
         createdDiv.addEventListener("mouseover",locations)
@@ -35,6 +37,8 @@ function createBasketBallDivs () {
         createdDiv.style.border = "solid 0.25px green"
 
         //creates event listener
+        createdDiv.addEventListener("mousedown",mouseDown)
+        createdDiv.addEventListener("mouseup",mouseUp)
         document.addEventListener("keydown",keyDown)
         document.addEventListener("keyup",keyUp)
         createdDiv.addEventListener("mouseover",locations)
@@ -49,7 +53,6 @@ let keyPressed = "";
 let currentLocation;
 let homeTeamScore = 0;
 let awayTeamScore = 0;
-
 
 // functions as result of the event listeners
 function mouseDown(evt){
@@ -76,32 +79,33 @@ function keyDown(evt){
     iskeyPressed = true
     keyPressed = evt.key
 
-    document.getElementById(`${currentLocation}`).addEventListener("mousedown",mouseDown)
-    document.getElementById(`${currentLocation}`).addEventListener("mouseup",mouseUp)
+    
 
     if (isMouseDown == true){ // this says that the basket was made
         // checks if it was a 2 pointer
         if (keyPressed == "2" && iskeyPressed == true){
             mapArray[currentLocation][0] += 1
-
             if (currentLocation < 110){
                 homeTeamScore += 2
                 homeScore(homeTeamScore)
+                home2PtPcCalc()
             } else{
                 awayTeamScore += 2
                 awayScore(awayTeamScore)
+                away2PtPcCalc()
             }
 
-            // checks if it was a 3 pointer
+        // checks if it was a 3 pointer
         } else if (keyPressed == "3" && iskeyPressed == true){
-            mapArray[currentLocation][2] += 1
-            
+            mapArray[currentLocation][2] += 1 
             if (currentLocation < 110){
                 homeTeamScore += 3
                 homeScore(homeTeamScore)
+                home3PtPcCalc()
             } else{
                 awayTeamScore += 3
                 awayScore(awayTeamScore)
+                away3PtPcCalc()
             }
         }
     } 
@@ -111,9 +115,20 @@ function keyDown(evt){
         // checks if it was a 2 pointer
         if (keyPressed == "2" && iskeyPressed == true){
             mapArray[currentLocation][1] += 1
+            if (currentLocation < 110){
+                home2PtPcCalc()
+            } else {
+                away2PtPcCalc()
+            }
+
         // checks if it was a 3 pointer
         } else if (keyPressed == "3" && iskeyPressed == true){
             mapArray[currentLocation][3] += 1
+            if (currentLocation < 110){
+                home3PtPcCalc()
+            } else {
+                away3PtPcCalc()
+            }
         }
     }
 } 
@@ -141,11 +156,13 @@ function homeMadeFT(){
     homeFTMadeCounter += 1
     homeTeamScore += 1
     homeScore(homeTeamScore)
+    homeFTPcClacl()
 }
 
 function homeMissedFT(){
     let FTButton = document.getElementById("homeFTMissed")
     homeFTMissedCounter += 1
+    homeFTPcClacl()
 }
 
 function awayMadeFT(){
@@ -153,11 +170,13 @@ function awayMadeFT(){
     awayFTMadeCounter += 1
     awayTeamScore += 1
     awayScore(awayTeamScore)
+    awayFTPcClacl()
 }
 
 function awayMissedFT(){
     let FTButton = document.getElementById("awayFTMissed")
     awayFTMissedCounter += 1
+    awayFTPcClacl()
 }
 
 // this code shows the score to the top
@@ -170,3 +189,70 @@ function awayScore(awayTeamScore){
     document.getElementById("pointsAway").innerText = awayTeamScore
 }
 
+// this code calculates percentages of misses and makes
+
+function home3PtPcCalc(){
+    let makes = 0
+    let misses = 0 
+    for (let i=0; i < 110; i++){
+        makes += mapArray[i][2]
+        misses += mapArray[i][3]
+    }
+    home3PtPc = Math.round((makes/(misses+makes))*100)
+    document.getElementById("threeHome").innerText = `3pt%: ${home3PtPc}`
+}
+
+function home2PtPcCalc(){
+    let makes = 0
+    let misses = 0 
+    for (let i=0; i < 110; i++){
+        makes += mapArray[i][0]
+        misses += mapArray[i][1]
+    }
+    home2PtPc = Math.round((makes/(misses+makes))*100)
+    document.getElementById("twoHome").innerText = `2pt%: ${home2PtPc}`
+}
+
+function away3PtPcCalc(){
+    let makes = 0
+    let misses = 0 
+    for (let i=110; i < 220; i++){
+        makes += mapArray[i][2]
+        misses += mapArray[i][3]
+    }
+    away3PtPc = Math.round((makes/(misses+makes))*100)
+    document.getElementById("threeAway").innerText = `3pt%: ${away3PtPc}`
+}
+
+function away2PtPcCalc(){
+    let makes = 0
+    let misses = 0 
+    for (let i=0; i < 220; i++){
+        makes += mapArray[i][0]
+        misses += mapArray[i][1]
+    }
+    away2PtPc = Math.round((makes/(misses+makes))*100)
+    document.getElementById("twoAway").innerText = `2pt%: ${away2PtPc}`
+}
+
+function homeFTPcClacl(){
+    let pcCalcHome = Math.round((homeFTMadeCounter/(homeFTMadeCounter+homeFTMissedCounter))*100)
+    document.getElementById("ftHome").innerText = `ftpt%: ${pcCalcHome}`
+}
+
+function awayFTPcClacl(){
+    let pcCalcAway = Math.round((awayFTMadeCounter/(awayFTMadeCounter+awayFTMissedCounter))*100)
+    document.getElementById("ftAway").innerText = `ftpt%: ${pcCalcAway}`
+}
+
+
+
+
+home3PtPcCalc()
+away3PtPcCalc()
+
+home2PtPcCalc()
+away2PtPcCalc()
+
+homeFTPcClacl()
+awayFTPcClacl()
