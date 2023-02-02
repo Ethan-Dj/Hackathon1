@@ -7,11 +7,15 @@
 #basketballCourt {
     width : 56vw;
     height: 36vw;
-    border: 2px solid;
+    border: 4px solid lightgrey;
     margin: 1vw;
     background-image: url("basketballCourt.png");
     background-size: cover;
     background-position: center;
+    /* This part creates the grid */
+    display: grid;
+    grid-template-columns: repeat(40,1fr);
+    grid-template-rows: repeat(20, 1fr);
 }
 
 body{
@@ -33,3 +37,4 @@ body{
 .statsLayout{
     padding: 0 20vw;
 }
+
