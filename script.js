@@ -17,7 +17,6 @@ function createBasketBallDivs () {
         createdDiv.style.border = "solid 0.25px green"
         
         //creates event listener
-        createdDiv.addEventListener("mousedown",mouseDown)
         document.addEventListener("keydown",keyDown)
         document.addEventListener("keyup",keyUp)
         createdDiv.addEventListener("mouseover",locations)
@@ -36,8 +35,7 @@ function createBasketBallDivs () {
         createdDiv.style.border = "solid 0.25px green"
 
         //creates event listener
-        createdDiv.addEventListener("mousedown",mouseDown)
-         document.addEventListener("keydown",keyDown)
+        document.addEventListener("keydown",keyDown)
         document.addEventListener("keyup",keyUp)
         createdDiv.addEventListener("mouseover",locations)
 
@@ -55,8 +53,11 @@ let awayTeamScore = 0;
 
 // functions as result of the event listeners
 function mouseDown(evt){
-    evt.preventDefault()
     isMouseDown = true
+}
+
+function mouseUp(evt){
+    isMouseDown = false
 }
 
 function keyUp(evt){
@@ -69,15 +70,14 @@ function locations(evt){
     currentLocation = evt.srcElement.attributes.id.nodeValue
 }
 
-
 // key down function is when something happens
 function keyDown(evt){
     evt.preventDefault()
     iskeyPressed = true
     keyPressed = evt.key
 
-    // this is the for the home team 
-    
+    document.getElementById(`${currentLocation}`).addEventListener("mousedown",mouseDown)
+    document.getElementById(`${currentLocation}`).addEventListener("mouseup",mouseUp)
 
     if (isMouseDown == true){ // this says that the basket was made
         // checks if it was a 2 pointer
@@ -86,8 +86,10 @@ function keyDown(evt){
 
             if (currentLocation < 110){
                 homeTeamScore += 2
+                homeScore(homeTeamScore)
             } else{
                 awayTeamScore += 2
+                awayScore(awayTeamScore)
             }
 
             // checks if it was a 3 pointer
@@ -96,8 +98,10 @@ function keyDown(evt){
             
             if (currentLocation < 110){
                 homeTeamScore += 3
+                homeScore(homeTeamScore)
             } else{
                 awayTeamScore += 3
+                awayScore(awayTeamScore)
             }
         }
     } 
@@ -106,14 +110,12 @@ function keyDown(evt){
     else {
         // checks if it was a 2 pointer
         if (keyPressed == "2" && iskeyPressed == true){
-        mapArray[currentLocation][1] += 1
+            mapArray[currentLocation][1] += 1
         // checks if it was a 3 pointer
         } else if (keyPressed == "3" && iskeyPressed == true){
-        mapArray[currentLocation][3] += 1
+            mapArray[currentLocation][3] += 1
         }
     }
-    
-    console.log(mapArray[currentLocation])
 } 
 
 createBasketBallDivs()
@@ -137,6 +139,8 @@ document.getElementById("awayFTMissed").addEventListener("click",awayMissedFT)
 function homeMadeFT(){
     let FTButton = document.getElementById("homeFTMade")
     homeFTMadeCounter += 1
+    homeTeamScore += 1
+    homeScore(homeTeamScore)
 }
 
 function homeMissedFT(){
@@ -147,9 +151,22 @@ function homeMissedFT(){
 function awayMadeFT(){
     let FTButton = document.getElementById("awayFTMade")
     awayFTMadeCounter += 1
+    awayTeamScore += 1
+    awayScore(awayTeamScore)
 }
 
 function awayMissedFT(){
     let FTButton = document.getElementById("awayFTMissed")
     awayFTMissedCounter += 1
 }
+
+// this code shows the score to the top
+
+function homeScore(homeTeamScore){
+    document.getElementById("pointsHome").innerText = homeTeamScore
+}
+
+function awayScore(awayTeamScore){
+    document.getElementById("pointsAway").innerText = awayTeamScore
+}
+
