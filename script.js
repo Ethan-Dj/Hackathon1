@@ -256,16 +256,15 @@ awayFTPcClacl()
 // for loop that calculates shot percentages 
 
 function viewMapColor(){
-    console.log(mapArray)
     let makes = 0;
     let misses= 0 ;
     let shotPctg = 0;
-
-    
+    let shotsTaken = 0
     for(let i = 0; i < 220; i++){
         makes = mapArray[i][0] + mapArray[i][2]
         misses = mapArray[i][1] + mapArray[i][3]
-        shotPctg = Math.round((makes/(misses+makes)))
+        shotsTaken = makes + misses
+        shotPctg = makes/shotsTaken
         let location = document.getElementById(`${i}`)
         location.style.backgroundColor ="orange"
         console.log(shotPctg)
@@ -276,6 +275,7 @@ function viewMapColor(){
             location.style.opacity = `0.01`
         }
     }
+    console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
 }
 
 viewMapColor()
