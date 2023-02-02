@@ -7,8 +7,6 @@ function createBasketBallDivs () {
         createdDiv.id = `${i}`
         createdDiv.style.border = "solid 0.25px green"
 
-
-
         createdDiv.addEventListener("mousedown",mouseDown)
         createdDiv.addEventListener("mousedown",mouseUp)
         document.addEventListener("keydown",keyDown)
@@ -59,6 +57,7 @@ function keyUp(evt){
 function locations(evt){
     evt.preventDefault()
     currentLocation = evt.srcElement.attributes.id.nodeValue
+    console.log(currentLocation)
 }
 
 
