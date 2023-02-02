@@ -70,3 +70,8 @@ body{
 #end {
     margin-bottom: 50px;
 }
+
+#quarterAndOther{
+    display: flex;
+    flex-direction: column;
+}

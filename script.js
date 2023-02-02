@@ -267,7 +267,6 @@ function viewMapColor(){
         shotPctg = makes/shotsTaken
         let location = document.getElementById(`${i}`)
         location.style.backgroundColor ="orange"
-        console.log(shotPctg)
         if (shotPctg > 0){
             location.style.opacity = `${shotPctg}`
             console.log(shotPctg)
@@ -275,7 +274,6 @@ function viewMapColor(){
             location.style.opacity = `0.01`
         }
     }
-    console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
 }
 
 viewMapColor()
