@@ -20,6 +20,24 @@
 
 }
 
+#home {
+    display: grid;
+    grid-template-columns: repeat(11,1fr);
+    grid-template-rows: repeat(10, 1fr);
+
+    height: 36vw;
+    width: 28vw;
+}
+
+#away {
+    display: grid;
+    grid-template-columns: repeat(11,1fr);
+    grid-template-rows: repeat(10, 1fr);
+
+    height: 36vw;
+    width: 28vw;
+}
+
 body{
     display: flex;
     flex-direction: column;
