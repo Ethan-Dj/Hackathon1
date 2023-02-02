@@ -268,7 +268,7 @@ function viewMapColor(){
         let location = document.getElementById(`${i}`)
         location.style.backgroundColor ="orange"
         if (shotPctg > 0){
-            location.style.opacity = `${shotPctg}`
+            location.style.opacity = `${shotPctg*0.75}`
             console.log(shotPctg)
         } else {
             location.style.opacity = `0.01`
