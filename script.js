@@ -116,4 +116,40 @@ function keyDown(evt){
     console.log(mapArray[currentLocation])
 } 
 
-createBasketBallDivs() 
+createBasketBallDivs()
+
+// The above code makes the divs for the basketball court and sets up the data collection
+
+// This code gets the data from the buttons depending on freethrows
+
+let homeFTMadeCounter = 0
+let homeFTMissedCounter = 0
+
+let awayFTMadeCounter = 0
+let awayFTMissedCounter = 0
+
+document.getElementById("homeFTMade").addEventListener("click",homeMadeFT)
+document.getElementById("homeFTMissed").addEventListener("click",homeMissedFT)
+
+document.getElementById("awayFTMade").addEventListener("click",awayMadeFT)
+document.getElementById("awayFTMissed").addEventListener("click",awayMissedFT)
+
+function homeMadeFT(){
+    let FTButton = document.getElementById("homeFTMade")
+    homeFTMadeCounter += 1
+}
+
+function homeMissedFT(){
+    let FTButton = document.getElementById("homeFTMissed")
+    homeFTMissedCounter += 1
+}
+
+function awayMadeFT(){
+    let FTButton = document.getElementById("awayFTMade")
+    awayFTMadeCounter += 1
+}
+
+function awayMissedFT(){
+    let FTButton = document.getElementById("awayFTMissed")
+    awayFTMissedCounter += 1
+}
