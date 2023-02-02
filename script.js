@@ -276,6 +276,17 @@ function viewMapColor(){
     }
 }
 
+function removeMap(){
+    for(let i = 0; i < 220; i++){
+        for(let i = 0; i < 220; i++){
+        let location = document.getElementById(`${i}`)
+        location.style.opacity = `0.01`
+        }
+    }
+}
+
 viewMapColor()
 
 document.getElementById("viewMap").addEventListener("click",viewMapColor)
+document.getElementById("reset").addEventListener("click",removeMap)
+
