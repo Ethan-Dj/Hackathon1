@@ -45,6 +45,7 @@ function keyDown(evt){
         console.log("two")
     } else if (keyPressed == "3"){
         console.log("three")
+        
     }
 
 }
