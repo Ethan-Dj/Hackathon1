@@ -2,13 +2,14 @@ function createBasketBallDivs () {
     let basketballDiv = document.getElementById("basketballCourt")
     for (let i=0; i < 220; i++){
         let createdDiv = document.createElement("div")
-        createdDiv.id = `div${i}`
+        createdDiv.id = `${i}`
         createdDiv.style.border = "solid 0.25px green"
 
 
         createdDiv.addEventListener("mousedown",mouseDown)
         createdDiv.addEventListener("mousedown",mouseUp)
-        document.addEventListener("keydown",amount)
+        document.addEventListener("keydown",keyDown)
+        document.addEventListener("keyup",keyUp)
         createdDiv.addEventListener("mouseover",locations)
 
         basketballDiv.appendChild(createdDiv)
@@ -16,8 +17,9 @@ function createBasketBallDivs () {
 }
 
 let isMouseDown = false;
+let iskeyPressed = false;
 let keyPressed = "";
-let currentLocation = ""
+let currentLocation = "";
 
 
 function mouseDown(evt){
@@ -31,9 +33,22 @@ function mouseUp(evt){
     console.log(isMouseDown)
 }
 
-function amount(evt){
+function keyDown(evt){
     evt.preventDefault()
+    iskeyPressed = true
     keyPressed = evt.key
+
+    if (keyPressed == "2"){
+        console.log("two")
+    } else if (keyPressed == "3"){
+        console.log("three")
+    }
+
+}
+
+function keyUp(evt){
+    evt.preventDefault()
+    iskeyPressed = false
 }
 
 function locations(evt){
