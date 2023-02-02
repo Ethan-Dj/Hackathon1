@@ -14,7 +14,6 @@ function createBasketBallDivs () {
         // create divs with style
         let createdDiv = document.createElement("div")
         createdDiv.id = `${i}`
-        createdDiv.style.border = "solid 0.25px green"
         
         //creates event listener
         createdDiv.addEventListener("mousedown",mouseDown)
@@ -34,7 +33,6 @@ function createBasketBallDivs () {
         // create divs with style
         let createdDiv = document.createElement("div")
         createdDiv.id = `${i}`
-        createdDiv.style.border = "solid 0.25px green"
 
         //creates event listener
         createdDiv.addEventListener("mousedown",mouseDown)
@@ -245,9 +243,6 @@ function awayFTPcClacl(){
     document.getElementById("ftAway").innerText = `ftpt%: ${pcCalcAway}`
 }
 
-
-
-
 home3PtPcCalc()
 away3PtPcCalc()
 
@@ -256,3 +251,33 @@ away2PtPcCalc()
 
 homeFTPcClacl()
 awayFTPcClacl()
+
+// This part makes the map
+// for loop that calculates shot percentages 
+
+function viewMapColor(){
+    console.log(mapArray)
+    let makes = 0;
+    let misses= 0 ;
+    let shotPctg = 0;
+
+    
+    for(let i = 0; i < 220; i++){
+        makes = mapArray[i][0] + mapArray[i][2]
+        misses = mapArray[i][1] + mapArray[i][3]
+        shotPctg = Math.round((makes/(misses+makes)))
+        let location = document.getElementById(`${i}`)
+        location.style.backgroundColor ="orange"
+        console.log(shotPctg)
+        if (shotPctg > 0){
+            location.style.opacity = `${shotPctg}`
+            console.log(shotPctg)
+        } else {
+            location.style.opacity = `0.01`
+        }
+    }
+}
+
+viewMapColor()
+
+document.getElementById("viewMap").addEventListener("click",viewMapColor)

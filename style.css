@@ -57,3 +57,16 @@ body{
 .statsLayout{
     padding: 0 10vw;
 }
+
+#viewMap {
+    margin-top: 60px;
+    padding: 10px;
+}
+
+#worksHow{
+    margin-top: 100px;
+}
+
+#end {
+    margin-bottom: 50px;
+}
