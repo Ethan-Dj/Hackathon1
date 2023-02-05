@@ -1,5 +1,6 @@
 let mapArray = []
 
+
 //array for each [2points made, 2points miss, 3points made 3 points missed]
 
 function createBasketBallDivs () {
@@ -293,3 +294,32 @@ viewMapColor()
 document.getElementById("viewMap").addEventListener("click",viewMapColor)
 document.getElementById("reset").addEventListener("click",removeMap)
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// above is core functionality not to be tampered with 
+
+function correctScoreHomePlus(){
+    console.log("here")
+    homeTeamScore += 1
+    homeScore(homeTeamScore)
+}
+
+function correctScoreHomeTake(){
+    homeTeamScore -= 1
+    homeScore(homeTeamScore)
+}
+
+function correctScoreAwayPlus(){
+    awayTeamScore += 1
+    awayScore(awayTeamScore)
+}
+
+function correctScoreAwayTake(){
+    awayTeamScore -= 1
+    awayScore(awayTeamScore)
+}
+
+document.getElementById("pointAddTeam1").addEventListener("click",correctScoreHomePlus)
+document.getElementById("pointTakeTeam1").addEventListener("click",correctScoreHomeTake)
+
+document.getElementById("pointAddTeam2").addEventListener("click",correctScoreAwayPlus)
+document.getElementById("pointTakeTeam2").addEventListener("click",correctScoreAwayTake)

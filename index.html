@@ -10,8 +10,11 @@
 <body>
     <div id="scoresQuartersFouls">
         <div id="homeTeam" class="scores">
-            <h2>Home</h2>
+            <h2>Team 1</h2>
             <h1 id="pointsHome">0</h1>
+            <button id="pointAddTeam1" class="pointsButton">+ 1</button>
+            <button id="pointTakeTeam1" class="pointsButton">- 1</button>
+            <hr>
             <button id="homeFTMade">Made FT</button>
             <button id="homeFTMissed">Missed FT</button>
         </div>
@@ -20,8 +23,11 @@
             <button id="reset">Remove Stats Map</button>
         </div>
         <div id="awayTeam" class="scores">
-            <h2>Away</h2>
+            <h2>Team 2</h2>
             <h1 id="pointsAway">0</h1>
+            <button id="pointAddTeam2" class="pointsButton">+ 1</button>
+            <button id="pointTakeTeam2" class="pointsButton">- 1</button>
+            <hr>
             <button id="awayFTMade">Made FT</button>
             <button id="awayFTMissed">Missed FT</button>
         </div>
@@ -45,12 +51,6 @@
         </div>
     </div>
 
-    <h2 id="worksHow">How It Works:</h2>
-    <p id="small">This page builds a shot percentage map and records shot percentages.<br>
-        Hover mouse over shot location. Press key 2 or 3 
-        depending on if the shot was a 2 or 3 pointer.<br>If the shot went 
-        in, hold down mouse the press the correct key.
-    </p id="end">
     <script src="script.js"></script>
 </body>
 </html>
