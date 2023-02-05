@@ -51,11 +51,13 @@ body{
 #percentages{
     display: flex;
     flex-direction: row;
-    padding: 0 20vw;
+    
 }
 
 .statsLayout{
     padding: 0 10vw;
+    display: flex;
+    flex: row;
 }
 
 #viewMap {
@@ -78,4 +80,8 @@ body{
 
 .pointsButton {
     padding: 0 25px;
+}
+
+.stat {
+    margin: 5px;
 }

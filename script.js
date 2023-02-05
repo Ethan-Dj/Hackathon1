@@ -1,4 +1,9 @@
 let mapArray = []
+let leftOffensiveRebound = 0;
+let leftDefensiveRebound = 0
+
+let rightOffensiveRebound = 0;
+let rightDefensiveRebound = 0
 
 
 //array for each [2points made, 2points miss, 3points made 3 points missed]
@@ -128,9 +133,53 @@ function keyDown(evt){
             } else {
                 away3PtPcCalc()
             }
+        } else if (keyPressed == "q" && iskeyPressed == true){
+            if (currentLocation < 110){
+                leftOffensiveRebound += 1
+                lOReb()
+            } else {
+                leftDefensiveRebound += 1
+                lDReb()
+            }
+        } else if (keyPressed == "w" && iskeyPressed == true){
+            if (currentLocation < 110){
+                rightDefensiveRebound += 1
+                rDReb()
+            } else {
+                rightOffensiveRebound += 1
+                rOReb()
+            }
         }
     }
 } 
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+//This code shows rebounds
+
+function lOReb (){
+    document.getElementById("rebHomeOff").innerText = `OReb: ${leftOffensiveRebound}`
+}
+
+function lDReb (){
+    document.getElementById("rebHomeDef").innerText = `DReb: ${leftDefensiveRebound}`
+}
+
+function rOReb (){
+    document.getElementById("rebAwayOff").innerText = `OReb: ${rightOffensiveRebound}`
+}
+
+function rDReb (){
+    document.getElementById("rebAwayDef").innerText = `DReb: ${rightDefensiveRebound}`
+}
+
+lOReb ()
+lDReb ()
+rOReb ()
+rDReb ()
+
+////////////////////////////////////////////////////////////////////////////////////////
 
 createBasketBallDivs()
 
@@ -193,55 +242,61 @@ function awayScore(awayTeamScore){
 function home3PtPcCalc(){
     let makes = 0
     let misses = 0 
+    let home3PtPc = 0
     for (let i=0; i < 110; i++){
         makes += mapArray[i][2]
         misses += mapArray[i][3]
     }
     home3PtPc = Math.round((makes/(misses+makes))*100)
-    document.getElementById("threeHome").innerText = `3pt%: ${home3PtPc}`
+    document.getElementById("threeHome").innerText = `3pt%: ${home3PtPc} (${makes}/${misses+makes})`
 }
 
-function home2PtPcCalc(){
-    let makes = 0
-    let misses = 0 
-    for (let i=0; i < 110; i++){
-        makes += mapArray[i][0]
-        misses += mapArray[i][1]
-    }
-    home2PtPc = Math.round((makes/(misses+makes))*100)
-    document.getElementById("twoHome").innerText = `2pt%: ${home2PtPc}`
-}
+
 
 function away3PtPcCalc(){
     let makes = 0
     let misses = 0 
+    let away3PtPc = 0 
     for (let i=110; i < 220; i++){
         makes += mapArray[i][2]
         misses += mapArray[i][3]
     }
     away3PtPc = Math.round((makes/(misses+makes))*100)
-    document.getElementById("threeAway").innerText = `3pt%: ${away3PtPc}`
+    document.getElementById("threeAway").innerText = `3pt%: ${away3PtPc} (${makes}/${misses+makes})`
+}
+
+function home2PtPcCalc(){
+    let makes = 0
+    let misses = 0 
+    let home2PtPc = 0
+    for (let i=0; i < 110; i++){
+        makes += mapArray[i][0]
+        misses += mapArray[i][1]
+    }
+    home2PtPc = Math.round((makes/(misses+makes))*100)
+    document.getElementById("twoHome").innerText = `2pt%: ${home2PtPc} (${makes}/${misses+makes})`
 }
 
 function away2PtPcCalc(){
     let makes = 0
     let misses = 0 
-    for (let i=0; i < 220; i++){
+    let away2PtPc = 0 
+    for (let i=110; i < 220; i++){
         makes += mapArray[i][0]
         misses += mapArray[i][1]
     }
     away2PtPc = Math.round((makes/(misses+makes))*100)
-    document.getElementById("twoAway").innerText = `2pt%: ${away2PtPc}`
+    document.getElementById("twoAway").innerText = `2pt%: ${away2PtPc} (${makes}/${misses+makes})`
 }
 
 function homeFTPcClacl(){
     let pcCalcHome = Math.round((homeFTMadeCounter/(homeFTMadeCounter+homeFTMissedCounter))*100)
-    document.getElementById("ftHome").innerText = `ftpt%: ${pcCalcHome}`
+    document.getElementById("ftHome").innerText = `ftpt%: ${pcCalcHome} (${homeFTMadeCounter}/${homeFTMadeCounter+homeFTMissedCounter})`
 }
 
 function awayFTPcClacl(){
     let pcCalcAway = Math.round((awayFTMadeCounter/(awayFTMadeCounter+awayFTMissedCounter))*100)
-    document.getElementById("ftAway").innerText = `ftpt%: ${pcCalcAway}`
+    document.getElementById("ftAway").innerText = `ftpt%: ${pcCalcAway} (${awayFTMadeCounter}/${awayFTMadeCounter+awayFTMissedCounter})`
 }
 
 home3PtPcCalc()
