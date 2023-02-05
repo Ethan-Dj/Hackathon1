@@ -270,6 +270,9 @@ function viewMapColor(){
         if (shotPctg > 0){
             location.style.opacity = `${shotPctg*0.75}`
             console.log(shotPctg)
+        } else if (shotPctg == 0){
+            location.style.backgroundColor = "blue"
+            location.style.opacity = `0.2`
         } else {
             location.style.opacity = `0.01`
         }
