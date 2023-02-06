@@ -378,3 +378,53 @@ document.getElementById("pointTakeTeam1").addEventListener("click",correctScoreH
 
 document.getElementById("pointAddTeam2").addEventListener("click",correctScoreAwayPlus)
 document.getElementById("pointTakeTeam2").addEventListener("click",correctScoreAwayTake)
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// This part of the code deals with making a points heat map
+
+function viewMapMake(){
+    let pointsPerSquareleft = 0 
+    let pPSPctgleft = 0
+
+
+    let pointsPerSquareright = 0 
+    let pPSPctgright = 0
+
+    let location;
+
+    for(let i = 110; i < 220; i++){
+
+        pointsPerSquareright = (mapArray[i][0]*2) + (mapArray[i][2]*3)
+        pPSPctgright = (pointsPerSquareright/awayTeamScore)
+        location = document.getElementById(`${i}`)
+        console.log(pPSPctgright)
+
+        location.style.backgroundColor ="yellow"
+
+        if (pPSPctgright > 0){
+            location.style.opacity = `${pPSPctgright*2.5}`
+        } else {
+            location.style.opacity = `0.01`
+        }
+    }
+
+    for(let i = 0; i < 110; i++){
+
+        pointsPerSquareleft = (mapArray[i][0]*2) + (mapArray[i][2]*3)
+        pPSPctgleft = (pointsPerSquareleft/homeTeamScore)
+        location = document.getElementById(`${i}`)
+        console.log(pPSPctgleft)
+
+        location.style.backgroundColor ="yellow"
+
+        if (pPSPctgleft > 0){
+            location.style.opacity = `${pPSPctgleft*2.5}`
+        } else {
+            location.style.opacity = `0.01`
+        }
+    }   
+}
+
+document.getElementById("makeMap").addEventListener("click",viewMapMake)
